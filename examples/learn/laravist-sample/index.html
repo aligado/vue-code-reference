@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>yucha</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding-top: 20px;
+            background: url(images/background-color.gif) repeat 0 0;
+        }
+
+        #item-list {
+
+        }
+
+        .one-item {
+            max-width: 1024px;
+            margin-right: 3px;
+            margin-bottom: 10px;
+            padding: 6px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="app">
+    <button class="btn btn-block btn-success" v-on:click="clickMe"> abc </button>
+    <div v-for="item in itemList">
+        {{ item.imageUrl }}
+    </div>
+    <input type="text" class="form-control" v-model="imageUrl">
+    <input type="text" class="form-control" v-model="itemPrice">
+    <pre> {{ $data|json }}</pre>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            imageUrl:"123",
+            itemPrice:"888",
+            itemList:[{
+                imageUrl:"123",
+                itemPrice:"888"
+            }, {
+                imageUrl:"123",
+                itemPrice:"888"
+            }, {
+                imageUrl:"123",
+                itemPrice:"888"
+            }]
+        },
+        methods: {
+            clickMe: function () {
+                this.itemList.push( {imageUrl:this.imageUrl, itemPrice:this.itemPrice} );
+            }
+        }
+    });
+</script>
+
+<!--<script type="text/javascript" src="../js/show.js"></script>-->
+<!--<script type="text/javascript" src="../js/itemshow.js"></script>-->
+</body>
+</html>
+
+<!--<div class="col-md-6">-->
+<!--<div class="row one-item">-->
+<!--<div class="col-xs-3">-->
+<!--<img src="images/item.jpg" class="img-responsive"-->
+<!--alt="item images">-->
+<!--</div>-->
+<!--<div class="col-xs-4">-->
+<!--<h3 class="text-danger"> 2556 </h3>-->
+<!--<h4 class="text-danger">2016年10月1日11点23分</h4>-->
+<!--</div>-->
+<!--<div class="col-xs-5">-->
+<!--<p>今日苹果iphone6plus特价</p>-->
+<!--<small> ，灰色16G，欧版a1524，无锁，移动联通4G，自定义9新。指纹好用，全套配件，一分钱一分货，￥2895。</small>-->
+<!--<strong class="text-danger">baobao51880</strong>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

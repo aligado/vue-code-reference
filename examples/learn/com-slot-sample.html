@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vue.js learn1 example</title>
+  <!-- Delete ".min" for console warnings in development -->
+  <script src="../../dist/vue.min.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <!--数据显示传递-->
+    <child1> </child1>
+  </div>
+
+  <div id='app2'>
+    <!--数据显示传递-->
+    <child2> </child1>
+  </div>
+
+  <script>
+
+      const child1 = {
+        template: `
+          <div>
+            <h3> I'm child </h3>
+            <slot>
+              如果没有分发内容显示这里
+            </slot>
+          </div> 
+        `,
+        props: ['message'],
+      };
+
+      const app = new Vue({
+        template: `
+          <div>
+            <h2> I'm father </h2>
+            <child1>
+              <p> father message </p>
+              <p> father message too </p> 
+            </child1>
+          </div> 
+        `,
+        el: '#app',
+        components: { child1 },
+        data: {
+          value: "alpc32",
+          total: 0,
+          message: "hello message by alpc32",
+        },
+      })  
+      const child2 = {
+        template: `
+          <div class="container">
+            <header>
+              <slot name="header"></slot>
+            </header>
+            <main>
+              <slot></slot>
+            </main>
+            <footer>
+              <slot name="footer"></slot>
+            </footer>
+          </div>
+        `,
+      };
+
+      const app2 = new Vue({
+        template: `
+          <child2>
+            <h1 slot="header">Here might be a page title</h1>
+            <p>A paragraph for the main content.</p>
+            <p>And another one.</p>
+            <p slot="footer">Here's some contact info</p>
+          </child2>
+        `,
+        el: '#app2',
+        components: { child2 },
+      })
+</script>
+</body>
+
+</htmliiiiiiiik>

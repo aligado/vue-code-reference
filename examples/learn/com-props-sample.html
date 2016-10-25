@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vue.js learn1 example</title>
+  <!-- Delete ".min" for console warnings in development -->
+  <script src="../../dist/vue.min.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <!--数据显示传递-->
+    <child1 message="child1"> </child1>
+    <child2 :value="value" message="child2" v-on:click.native="doTheThing"> </child2>
+    <p>{{ total }}</p>
+    <child3 v-on:increment="incrementTotal"></child3>
+    <child3 v-on:increment="incrementTotal"></child3>
+    <p>{{ message }}</p>
+    <child4 label="Message" v-model="message"></child4>
+  </div>
+  <script>
+        function doTheThing() {
+          alert("hello alpc32");
+        }
+
+      const child1 = {
+        template: `
+        <p> {{ message }} </p>
+        `,
+        props: ['message'],
+      };
+
+      const child2 = {
+        template: `
+        <div>
+          <input :value="value"> 
+          <p> {{ message }} </p>
+       </div> 
+        `,
+        props: ['message', 'value'],
+      };
+
+      const child3 = {
+        template: '<button v-on:click="increment">{{ counter }}</button>',
+        data: function () {
+          return {
+            counter: 0
+          }
+        },
+        methods: { 
+          increment: function (){ 
+            this.counter += 1; 
+            this.$emit('increment'); 
+          } 
+        },
+      };
+
+      const child4 = {
+        template:` 
+         <div class="form-group">
+         <label v-bind:for="randomId">{{ label }}:</label>
+         <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">
+         </div> 
+         `,
+        props: ['value', 'label'],
+        data: function () {
+          return {
+            randomId: 'input-' + Math.random()
+          }
+        },
+        methods: {
+          onInput: function (event) {
+            this.$emit('input', event.target.value)
+          }
+        },
+      }
+
+      const app = new Vue({
+        el: '#app',
+        components: { child1, child2, child3, child4 },
+        data: {
+          value: "alpc32",
+          total: 0,
+          message: "hello message by alpc32",
+        },
+        methods: {
+          incrementTotal: function () {
+            this.total += 1
+          }
+        }
+      })
+</script>
+</body>
+
+</htmliiiiiiiik>

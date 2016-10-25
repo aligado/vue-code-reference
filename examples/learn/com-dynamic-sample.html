@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vue.js learn1 example</title>
+  <!-- Delete ".min" for console warnings in development -->
+  <script src="../../dist/vue.min.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <!--数据显示传递-->
+    <component :is="currentView"> </component>
+  </div>
+  <script>
+
+      const child1 = {
+        template: `
+          <div>
+            <h3>I'm child1</h3>
+          </div> 
+        `,
+      };
+
+      const child2 = {
+        template: `
+          <div>
+            <h3>I'm child2 </h3>
+        `,
+      };
+
+
+      const app = new Vue({
+        el: '#app',
+        components: { child1, child2 },
+        data: {
+          currentView: child1,
+        },
+      })  
+      </script>
+</body>
+
+</htmliiiiiiiik>

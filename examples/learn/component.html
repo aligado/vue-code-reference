@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue.js learn1 example</title>
+    <!-- Delete ".min" for console warnings in development -->
+    <script src="../../dist/vue.min.js"></script>
+</head>
+<body>
+<div id="example-2">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+    <child message="hello!"> </child>
+</div>
+<script>
+    var data = { counter: 0 }
+    Vue.component('my-component', {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        // data 是一个函数，因此 Vue 不会警告，
+        // 但是我们为每一个组件返回了同一个对象引用
+        data: function () {
+            return {
+                counter: 0
+            }
+        }
+    })
+    Vue.component('child', {
+        props: ['message'],
+        template: '<span>{{ message }}</span>'
+    })
+    new Vue({
+        el: '#example-2',
+
+    })
+</script>
+</body>
+</html>

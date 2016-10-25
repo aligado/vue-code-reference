@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue.js learn1 example</title>
+    <!-- Delete ".min" for console warnings in development -->
+    <script src="../../dist/vue.min.js"></script>
+</head>
+<body>
+<div id="todo-list-example">
+    <input
+            v-model="newTodoText"
+            v-on:keyup.enter="addNewTodo"
+            placeholder="Add a todo"
+            >
+    <ul>
+       <!-- 
+        <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-bind:title="todo.message"
+                v-on:remove="todos.splice(index, 1)"
+                ></li> -->
+         <todo-item
+                v-for="(todo, index) in todos"
+                v-bind:title="todo.message"
+                v-on:remove="todos.splice(index, 1)"
+                ></todo-item>      
+    </ul>
+</div>
+
+<script>
+    Vue.component('todo-item', {
+        template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+        props: ['title']
+    })
+    var app = new Vue({
+        el: '#todo-list-example',
+        data: {
+            newTodoText: '',
+            todos: [
+                {message: 'Do the dishes'},
+                {message: 'Take out the trash'},
+                {message: 'Mow the lawn'}
+            ]
+        },
+        methods: {
+            addNewTodo: function () {
+                this.todos.push({message:this.newTodoText})
+                this.newTodoText = ''
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
